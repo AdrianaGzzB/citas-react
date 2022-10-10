@@ -1,6 +1,6 @@
-function listadoPaciente(){
+function ListadoPaciente(){
     return(
         <h2>Adriana Gonzalez Barcenas</h2>
     )
 }
-export default listadoPaciente
+export default ListadoPaciente
