@@ -5,16 +5,16 @@ import ListadoPaciente from "./componentes/listadoPaciente";
 import Formulario from "./componentes/formulario";
 import Error from "./componentes/error";
 import Paciente from "./componentes/pacientes";
-
+//los estilos se meten con className en los archivos .jsx
 function App() {
   return (
-    <>
+    <div className="mt-20">
       <Header />
-      <ListadoPaciente/>
       <Formulario/>
+      <ListadoPaciente/>
       <Error/>
       <Paciente/>
-    </>
+    </div>
   )
 }
 
