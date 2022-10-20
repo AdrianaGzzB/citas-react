@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import Error from './error';
-import Paciente from './pacientes';
+
 
 function Formulario({pacientes, setPacientes,paciente, setPaciente}) {
   const [mascota,setMascota]=useState('');
