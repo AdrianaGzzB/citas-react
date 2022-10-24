@@ -10,6 +10,16 @@ function Formulario({pacientes, setPacientes,paciente, setPaciente}) {
   const [sintomas,setSintomas]=useState('');
   const [error,setError]=useState(false)
 
+  useEffect(()=>{
+    console.log(paciente)
+
+  },[paciente]
+  ) 
+  useEffect(()=>{
+    console.log('El componente esta listo')
+  },[])
+
+  
   const generarId=()=>{
     const random=Math.random().toString(36)
     const fecha=Date.now().toString(36)
@@ -25,13 +35,19 @@ function Formulario({pacientes, setPacientes,paciente, setPaciente}) {
     };
     setError(false)
     const objetoPaciente={mascota,propietario,email,alta,sintomas}
-    if(paciente.id){
+
+    if(paciente.id){ 
+      objetoPaciente.id=paciente.id
+      const pacientesAct=pacientes.map(pacienteState => pacienteState.id===paciente.id ? objetoPaciente:pacienteState)
+      setPacientes(pacientesAct)
+      setPaciente({})
 
     }else{
       objetoPaciente.id=generarId()
       setPacientes([...pacientes, objetoPaciente])
     }
 
+    
     //--------------limpiando nuestros input
     setMascota('')
     setPropietario('')
@@ -106,7 +122,8 @@ function Formulario({pacientes, setPacientes,paciente, setPaciente}) {
         <input 
         type="submit" 
         className=" bg-indigo-500 text-white uppercase w-full p-3 mt-5 rounded-md hover:bg-indigo-700 cursor-pointer transition-colors font-bold" 
-        value={'Agregar Paciente'}/>
+        value={paciente.id?'Editar paciente':'Agregar paciente'}
+        />
       </form>
     </div> 
   );
