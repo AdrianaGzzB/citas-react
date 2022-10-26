@@ -3,7 +3,8 @@
 import Header from "./componentes/header";
 import ListadoPaciente from "./componentes/listadoPaciente";
 import Formulario from "./componentes/formulario";
-import {useState} from "react";
+import {useState, useEffect} from "react";
+
 //los estilos se meten con className en los archivos .jsx
 function App() {
   const[pacientes, setPacientes]=useState([])
@@ -12,7 +13,19 @@ function App() {
     setPacientes(pacientesAct)
    }
 
-  return (
+  useEffect(()=>{
+    const obtenerLS=(()=>{
+      const pacientesLS=JSON.parse(localStorage.getItem(pacientes))??[]
+      setPacientes(pacientesLS)
+     })
+  obtenerLS();
+  },[])
+
+ useEffect(()=>{
+  localStorage.setItem('pacientes', JSON.stringify(pacientes))
+},[pacientes])
+
+return (
     <div className="mt-20 container mx-auto">
       <Header 
       />

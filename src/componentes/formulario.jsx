@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 import Error from './error';
 
-
 function Formulario({pacientes, setPacientes,paciente, setPaciente}) {
   const [mascota,setMascota]=useState('');
   const [propietario,setPropietario]=useState('');
@@ -11,15 +10,15 @@ function Formulario({pacientes, setPacientes,paciente, setPaciente}) {
   const [error,setError]=useState(false)
 
   useEffect(()=>{
-    console.log(paciente)
-
+    if(Object.keys(paciente).length>0){
+       setMascota(paciente.mascota)
+       setPropietario(paciente.propietario)
+       setEmail(paciente.email)
+       setAlta(paciente.alta)
+       setSintomas(paciente.sintomas)
+    }
   },[paciente]
   ) 
-  useEffect(()=>{
-    console.log('El componente esta listo')
-  },[])
-
-  
   const generarId=()=>{
     const random=Math.random().toString(36)
     const fecha=Date.now().toString(36)
